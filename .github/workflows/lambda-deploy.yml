@@ -33,7 +33,7 @@ jobs:
       - name: Create deployment package
         run: |
           mkdir -p lambda_package
-          cp -r src/* lambda_package/
+          cp -r src/lambda_function.py lambda_package/
           cp -r package/* lambda_package/
           cd lambda_package
           zip -r ../deployment.zip .
