@@ -1,5 +1,6 @@
 name: Deploy Lambda Function
 
+# This workflow will deploy the Lambda function on push to main branch
 on:
   push:
     branches: [ main ]
