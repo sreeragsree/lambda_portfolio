@@ -1,6 +1,7 @@
 name: Deploy Lambda Function
 
 # This workflow will deploy the Lambda function on push to main branch
+# Updated to include proper dependency installation
 on:
   push:
     branches: [ main ]
@@ -27,10 +28,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install -r requirements.txt -t ./package
 
       - name: Create deployment package
         run: |
-          cd portfolio_lambda
+          mkdir -p lambda_package
+          cp -r src/lambda_function.py lambda_package/
+          cp src/contactus.html lambda_package/
+          cp src/success.html lambda_package/
+          cp -r package/* lambda_package/
+          cd lambda_package
           zip -r ../deployment.zip .
           cd ..
 
