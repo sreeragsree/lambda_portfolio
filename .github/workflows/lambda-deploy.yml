@@ -1,4 +1,4 @@
-name: Deploy Lambda
+name: Lambda Deployment
 
 on:
   push:
@@ -6,9 +6,14 @@ on:
 
 jobs:
   deploy:
+    name: Deploy Lambda Function
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
